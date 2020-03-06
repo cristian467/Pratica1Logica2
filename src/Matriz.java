@@ -250,11 +250,34 @@ public class Matriz {
 
     public void ordenarAscendenteDigitosTridiagonalSegundaria(){
         for(int i = 1; i < orden; i++){
-            ordenarDigitosAscendente(M[i][orden-i+1]);
-            ordenarDigitosAscendente(M[i][orden-i]);
-            ordenarDigitosAscendente(M[i+1][orden-i+1]);
+            M[i][orden-i+1] = ordenarDigitosAscendente(M[i][orden-i+1]);
+            M[i][orden-i] = ordenarDigitosAscendente(M[i][orden-i]);
+            M[i+1][orden-i+1] = ordenarDigitosAscendente(M[i+1][orden-i+1]);
         }
-        ordenarDigitosAscendente(M[orden][orden]);
+        M[orden][orden]= ordenarDigitosAscendente(M[orden][orden]);
+    }
+
+    public int ordenarDigitosAscendente(int d){
+        int numeroDigitos = cuantosDigitos(d);
+        int[] digitos = new int[numeroDigitos];
+        for(int i = 0; i < numeroDigitos; i++){
+            digitos[i] = d%10;
+            d = d/10;
+        }
+        for(int i = 0; i < digitos.length - 1; i++){
+            for(int j = 1; j < digitos.length; j++){
+                if(digitos[i] > digitos[j]){
+                    int aux = digitos[i];
+                    digitos[i] = digitos[j];
+                    digitos[j] = aux;
+                }
+            }
+        }
+        int ordenado = 0;
+        for(int i = 0; i < digitos.length; i++){
+            ordenado = ordenado*10 + digitos[i];
+        }
+        return ordenado;
     }
 
     public void intercambiarDatos(int i, int j, int k, int l){
