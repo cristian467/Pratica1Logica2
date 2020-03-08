@@ -2,6 +2,11 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/** Tema 3
+ * Cristian Herrera
+ * Roy Maestre
+ */
+
 public class Practica1 {
 
     Scanner leer = new Scanner(System.in);
