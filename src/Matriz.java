@@ -303,16 +303,49 @@ public class Matriz {
      * Si el dato contiene un cero (0) se ubica en la primera posicion, por lo que no se muestra
      */
     public void ordenarAscendenteDigitosTridiagonalSegundaria(){
+        {
+            //Impresion inicial
+            System.out.println("Los datos que cambiaran son: ");
+            System.out.println(M[1][orden - 1] + " en la fila 1 y columna " + (orden - 1));
+            System.out.println(M[1][orden] + " en la fila 1 y columna " + orden);
+            for (int i = 2; i < orden; i++) {
+                System.out.println(M[i][orden - i] + " en la fila " + i + " y columna " + (orden - i));
+                System.out.println(M[i][orden - i + 1] + " en la fila " + i + " y columna " + (orden - i + 1));
+                System.out.println(M[i][orden - i + 2] + " en la fila " + i + " y columna " + (orden - i + 2));
+            }
+            System.out.println(M[orden][1] + " en la fila " + orden + " y columna 1");
+            System.out.println(M[orden][2] + " en la fila " + orden + " y columna 2");
+        }
+        //Se guarda una copia de la matriz
+        Matriz copia = new Matriz(orden);
+        copiarMatriz(copia);
+
+        //Ordenamiento
         for(int i = 1; i < orden; i++){
             M[i][orden-i+1] = ordenarDigitosAscendente(M[i][orden-i+1]);
             M[i][orden-i] = ordenarDigitosAscendente(M[i][orden-i]);
             M[i+1][orden-i+1] = ordenarDigitosAscendente(M[i+1][orden-i+1]);
         }
         M[orden][1]= ordenarDigitosAscendente(M[orden][1]);
+
+        {
+            //Impresion
+            System.out.println("Los cambios realizados fueron: ");
+            System.out.println(copia.getDato(1,orden - 1) + "\t => " + M[1][orden - 1] + "\t en la fila 1 y columna " + (orden - 1));
+            System.out.println(copia.getDato(1, orden) + "\t => " + M[1][orden] + "\t en la fila 1 y columna " + orden);
+            for (int i = 2; i < orden; i++) {
+                System.out.println(copia.getDato(i,orden - i) + "\t => "+ M[i][orden-i] + "\t en la fila " + i + " y columna " + (orden - i));
+                System.out.println(copia.getDato(i,orden - i + 1) + "\t => " + M[i][orden -i + 1] + "\t en la fila " + i + " y columna " + (orden - i + 1));
+                System.out.println(copia.getDato(i,orden - i + 2) + "\t => " + M[i][orden -i + 2] + "\t en la fila " + i + " y columna " + (orden - i + 2));
+            }
+            System.out.println(copia.getDato(orden,1) + "\t => " + M[orden][1] + "\t en la fila " + orden + " y columna 1");
+            System.out.println(copia.getDato(orden,2) + "\t => " + M[orden][2] + "\t en la fila " + orden + " y columna 2");
+        }
+
     }
 
     /**
-     * Aqui en adelante se encuentran metodos que se usan en los metodos del ejercicio.
+     * Aqui en adelante se encuentran metodos extra que se usan en los metodos del ejercicio.
      */
 
     /**Usado en el ejercicio 8.
@@ -329,12 +362,51 @@ public class Matriz {
         return suma;
     }
 
+    /**Usado en el ejercicio 11
+     *  Metodo que dice cuantas veces se repite un dato en la matriz
+     * @param d Entero a analizar
+     * @return Devuelve el numero de veces que esta d en la matriz.
+     */
+    private int cuantoSeRepite(int d){
+        int contador = 0;
+        for(int i = 1; i<= orden; i++){
+            for (int j = 1; j <= orden; j++){
+                if(M[i][j] == d) contador++;
+            }
+        }
+        return contador;
+    }
+
+    /** Usado en los ejercicios 9, 13 y 14
+     * Intercambia dos datos en la matriz
+     * @param i Indice de la fila del primer dato
+     * @param j Indice de la columna del primer dato
+     * @param k Indice de la fila del segundo dato
+     * @param l Indice de la columna del segundo dato
+     */
+    private void intercambiarDatos(int i, int j, int k, int l){
+        int aux = M[i][j];
+        M[i][j] = M[k][l];
+        M[k][l] = aux;
+    }
+
+    /** Usado en el ejercicio 13
+     *  Intercambia dos columnas
+     * @param i Indice de una columna
+     * @param j Indice de la otra columna
+     */
+    private void intercambiarColumna(int i, int j){
+        for(int k = 1; k < orden; k++){
+            intercambiarDatos(k,i,k,j);
+        }
+    }
+
     /**Usado en el ejercicio 15
      * Cuenta cuantos digitos tiene un numero
      * @param n entero a analizar
      * @return Numero de digitos de n.
      */
-    public int cuantosDigitos(int n){
+    private int cuantosDigitos(int n){
         int i=1;
         while(n/10 != 0){
             n = n/10;
@@ -349,7 +421,7 @@ public class Matriz {
      * @param d Entero a analizar
      * @return Devuelve d pero con los digitos ordenados ascedentemente.
      */
-    public int ordenarDigitosAscendente(int d){
+    private int ordenarDigitosAscendente(int d){
         //Cuenta cuantos digitos tiene d y crea un vector de ese tamaño
         int numeroDigitos = cuantosDigitos(d);
         int[] digitos = new int[numeroDigitos];
@@ -376,52 +448,25 @@ public class Matriz {
         return ordenado;
     }
 
-    /**Usado en el ejercicio 11
-     *  Metodo que dice cuantas veces se repite un dato en la matriz
-     * @param d Entero a analizar
-     * @return Devuelve el numero de veces que esta d en la matriz.
+    /** Usado en ejercicio 15
+     * Copia los datos de una matriz a otra
+     * @param copia Matriz ya instanciada, donde se almacenara la copia de esta matriz.
      */
-    public int cuantoSeRepite(int d){
-        int contador = 0;
-        for(int i = 1; i<= orden; i++){
-            for (int j = 1; j <= orden; j++){
-                if(M[i][j] == d) contador++;
+    private void copiarMatriz(Matriz copia){
+        for(int i = 1; i <= orden; i++){
+            for(int j = 1; j <= orden; j++){
+                copia.setDato(M[i][j], i, j);
             }
-        }
-        return contador;
-    }
-
-    /** Usado en los ejercicios 9, 13 y 14
-     * Intercambia dos datos en la matriz
-     * @param i Indice de la fila del primer dato
-     * @param j Indice de la columna del primer dato
-     * @param k Indice de la fila del segundo dato
-     * @param l Indice de la columna del segundo dato
-     */
-    public void intercambiarDatos(int i, int j, int k, int l){
-        int aux = M[i][j];
-        M[i][j] = M[k][l];
-        M[k][l] = aux;
-    }
-
-    /** Usado en el ejercicio 13
-     *  Intercambia dos columnas
-     * @param i Indice de una columna
-     * @param j Indice de la otra columna
-     */
-    public void intercambiarColumna(int i, int j){
-        for(int k = 1; k < orden; k++){
-            intercambiarDatos(k,i,k,j);
         }
     }
 
     /** Setters y Getters
      */
-    public void setDato(int d, int i, int j){
+    private void setDato(int d, int i, int j){
         M[i][j] = d;
     }
 
-    public int getDato(int i, int j){
+    private int getDato(int i, int j){
         return M[i][j];
     }
 
