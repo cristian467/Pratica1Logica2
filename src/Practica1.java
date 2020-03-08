@@ -1,5 +1,3 @@
-import com.sun.media.jfxmediaimpl.HostUtils;
-
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -43,6 +41,10 @@ public class Practica1 {
 
     }
 
+    /**
+     * Ejercicios 3, 4, 5, 11 y 12
+     * @param matriz Recibe la matriz a operar
+     */
     public void menuOperacionesMatriz(Matriz matriz){
         int opcion = 0;
         do {
@@ -74,6 +76,10 @@ public class Practica1 {
         }while(opcion != 0);
     }
 
+    /**
+     * Ejercicios 6, 7, 8, 14
+     * @param matriz Recibe la matriz a operar
+     */
     public void menuOperacionesFilasColumnas(Matriz matriz){
         int opcion = 0;
         do {
@@ -105,6 +111,10 @@ public class Practica1 {
         }while(opcion != 0);
     }
 
+    /**
+     * Ejercicios 9, 10, 13 y 15
+     * @param matriz Recibe la matriz a operar
+     */
     public void menuOperacionesOrdenamiento(Matriz matriz){
         int opcion = 0;
         do {
@@ -132,8 +142,13 @@ public class Practica1 {
         }while(opcion != 0);
     }
 
+    /**
+     * Metodo para leer enteros y manejar sus excepciones
+     * @param min El menor valor que puede tomar dicho entero
+     * @param max El mayor valor que puede tomar dicho entero
+     * @return Un entero valido ingresado por el usuario
+     */
     public int leerInt(int min, int max){
-        //Metodo para leer un Entero ingresado por el usuario, valido en un intervalo y con manejo de excepciones.
         int n = min-1;
         while(true){
             try{
@@ -150,18 +165,6 @@ public class Practica1 {
     public static void main(String[] args) throws IOException {
         Practica1 start = new Practica1();
         start.menu();
-
-        /*Matriz matriz = new Matriz();
-        matriz.imprimirMatriz();
-        matriz.sumaDatos();
-        matriz.mayorDato();
-        matriz.menorDato();
-        matriz.mayorDatoFila();
-        matriz.menorDatocolumna();
-        matriz.mayorSumaDigitosFila();
-        matriz.frecuenciaDato();
-
-         */
     }
 }
 
