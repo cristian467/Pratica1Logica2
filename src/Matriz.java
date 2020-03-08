@@ -171,8 +171,8 @@ public class Matriz {
                     mayor = sumaDigitos(M[i][j]);
                     columna = j;
                 }
-                for(int k=1; k<= orden; i++){
-                    for(int f=1; f<orden; j++){
+                for(int a=1; a<= orden; i++){
+                    for(int b=1; b<orden; j++){
                         if(sumaDigitos(M[i][j]) == mayor){
                             System.out.println("El dato para el cual la suma de digitos es igual es:" +
                                     M[i][j]);
