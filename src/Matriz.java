@@ -3,6 +3,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+/** Tema 3
+ * Cristian Herrera
+ * Roy Maestre
+ */
+
 public class Matriz {
     private int[][] M;
     private int orden;
@@ -128,7 +133,7 @@ public class Matriz {
         for(int i=1; i<=orden; i++){
             int mayor = M[i][1];
             for(int j=1; j<=orden; j++){
-                if(M[i][j] > mayor){
+                if(M[i][j] >= mayor){
                     mayor = M[i][j];
                 }
             }
@@ -144,7 +149,7 @@ public class Matriz {
         for(int j=1; j<=orden; j++){
             int menor = M[1][j];
             for(int i=1; i<=orden; i++){
-                if(M[i][j] < menor){
+                if(M[i][j] <= menor){
                     menor = M[i][j];
                 }
             }
