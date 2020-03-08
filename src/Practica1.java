@@ -121,7 +121,7 @@ public class Practica1 {
             System.out.println("Seleccione la operacion que desea realizar.");
             System.out.println("1. Ordenar la matriz ascendentemente por filas");
             System.out.println("2. Ordenar cada fila descendentemente");
-            System.out.println("3. Ordenar descendentemente por fila 1?");
+            System.out.println("3. Ordenar descendentemente por fila 1");
             System.out.println("4. Ordenar ascendentemente los digitos de cada dato de la tridiagonal segundaria");
             System.out.println("0. Volver al menu principal");
             opcion = leerInt(0,4);

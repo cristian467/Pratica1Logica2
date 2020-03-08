@@ -167,7 +167,7 @@ public class Matriz {
                     columna = j;
                 }
             }
-            System.out.println("Fila " + i + ": " + mayor + ". Columna: " + columna);
+            System.out.println("Fila " + i + " es: " + mayor + ". Y se encuentra en la columna: " + columna);
         }
     }
 
