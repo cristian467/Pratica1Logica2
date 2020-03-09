@@ -161,18 +161,25 @@ public class Matriz {
      *  Imprime el dato cuya suma de digitos sea la mayor de la fila, ademas dice en que columna esta.
      */
     public void mayorSumaDigitosFila(){
-        System.out.println("El numero con mayor suma de digitos de cada fila es: ");
+        System.out.println("El numero(s) con mayor suma de digitos de cada fila es: ");
         for(int i=1; i<=orden; i++){
             int columna = 1;
             //sumaDigitos, retorna la suma de los digitos del numero, ver codigo al final.
-            int mayor = sumaDigitos(M[1][1]);
+            int mayor = sumaDigitos(M[i][1]);
             for(int j=1; j<=orden; j++){
                 if(sumaDigitos(M[i][j]) > mayor) {
                     mayor = sumaDigitos(M[i][j]);
                     columna = j;
                 }
             }
-            System.out.println("Fila " + i + " es: " + mayor + ". Y se encuentra en la columna: " + columna);
+            System.out.print("Fila " + i + " : " + M[i][columna] + " en la columna: " + columna);
+            //Se hace otra pasada por la fila para imprimir los que empatan en primer lugar
+            for(int j = 1; j <= orden; j++){
+                if(j != columna && sumaDigitos(M[i][j]) == mayor){
+                    System.out.print(" y " + M[i][j] + " en la columna: " + j);
+                }
+            }
+            System.out.println(".");
         }
     }
 
