@@ -171,6 +171,14 @@ public class Matriz {
                     mayor = sumaDigitos(M[i][j]);
                     columna = j;
                 }
+                for(int a=1; a<= orden; i++){
+                    for(int b=1; b<orden; j++){
+                        if(sumaDigitos(M[i][j]) == mayor){
+                            System.out.println("El dato para el cual la suma de digitos es igual es:" +
+                                    M[i][j]);
+                        }
+                    }
+                }
             }
             System.out.print("Fila " + i + " : " + M[i][columna] + " en la columna: " + columna);
             //Se hace otra pasada por la fila para imprimir los que empatan en primer lugar
